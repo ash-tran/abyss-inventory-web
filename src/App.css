@@ -1,0 +1,25 @@
+#root {
+  margin: 0 auto;
+}
+
+.page-layout {
+  margin: 5em;
+}
+
+.navigation {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1rem 5rem;
+  background-color: #1a1a1a;
+  /* background-color: #242424; */
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 1.5rem;
+}

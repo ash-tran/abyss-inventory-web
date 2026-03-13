@@ -1,0 +1,19 @@
+.homepage-layout {
+  text-align: center;
+  padding: 12.5%;
+}
+
+.homepage-heading {
+  font-size: 5em;
+}
+
+.homepage-button {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+  margin-top: 5em;
+}
+
+.subheading {
+  text-align: center;
+}

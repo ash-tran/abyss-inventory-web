@@ -1,0 +1,95 @@
+.version {
+  text-align: right;
+  font-size: 0.75em;
+}
+
+table, th, td {
+  border: 1px solid;
+  padding: 1em;
+}
+
+th {
+  background-color: #1a1a1a
+}
+
+tr:nth-child(even) {background-color: #1a1a1a;}
+
+.fish-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fish-header {
+  text-align: left;
+}
+
+.fish-image {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 1em;
+  justify-self: center;
+  text-align: center;
+}
+
+/* fish rarity colors */
+.uncommon {
+  color: #66bb6a;;
+}
+
+.rare {
+  color: #42a5f5;
+}
+
+.epic {
+  color: #ce93d8;
+}
+
+.legendary {
+  color: #ffb74d;
+}
+
+.mythical {
+  color: #ef5350;
+}
+
+/* fish region tag*/
+.region-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;   
+}
+
+.region-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25em;
+  width: 7em;
+  border: #ffffff solid 1px;
+}
+
+@media only screen and (max-width: 760px) {
+  table, tbody, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  td {
+    flex: 1 1 50%;
+    padding: 0.5em;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+  }
+}
