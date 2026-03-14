@@ -1,14 +1,15 @@
+// stars
 const stars = [
     {
-        "stars":3,
+        "value": 3,
         "multiplier": 1
     },
     {
-        "stars":2,
+        "value": 2,
         "multiplier": 0.75
     },
     {
-        "stars":1,
+        "value": 1,
         "multiplier": 0.2
     }
 ];

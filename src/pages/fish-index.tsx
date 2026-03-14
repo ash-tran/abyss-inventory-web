@@ -1,47 +1,8 @@
-import forgottenDeep from '../game-data/forgotten-deep'
-import ancientSands from '../game-data/ancient-sands'
-import ocean from '../game-data/ocean'
-import spiritRoots from '../game-data/spirit-roots'
-import sunkenWilds from '../game-data/sunken-wilds'
-import anglerCave from '../game-data/angler-cave'
+import allFish from '../game-data/all-fish'
 import '../App.css'
 import '../fish-index.css'
 
-
 function Index() {
-
-  // regions
-  const regions = [
-    { name: "Forgotten Deep", data: forgottenDeep },
-    { name: "Ancient Sands", data: ancientSands },
-    { name: "Ocean", data: ocean },
-    { name: "Spirit Roots", data: spiritRoots },
-    { name: "Sunken Wilds", data: sunkenWilds },
-    { name: "Angler Cave", data: anglerCave }
-  ];
-
-  // store unique fish by name
-  const fishMap = new Map<string, fishWithRegions>();
-
-  for (const region of regions) 
-  {
-    for (const fish of region.data) 
-    {
-      if (fishMap.has(fish.name)) 
-      {
-        const existingFish = fishMap.get(fish.name)!;
-        existingFish.regions.push(region.name);
-      } 
-      else 
-      {
-        fishMap.set(fish.name, { ...fish, regions: [region.name] });
-      }
-    }
-  }
-
-  // sort by price descending
-  // need to implement further sorting for the table
-  const allFish = Array.from(fishMap.values()).sort((a, b) => b.price - a.price);
 
   return (
     <>
