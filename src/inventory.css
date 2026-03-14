@@ -28,3 +28,14 @@
   list-style: none;
   z-index: 1;
 }
+
+.full-fish-information {
+  background-color: #1a1a1a;
+  width: 50em;
+  height: 7.5em;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

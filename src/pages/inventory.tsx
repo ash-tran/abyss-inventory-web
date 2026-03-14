@@ -79,6 +79,7 @@ function Inventory() {
             {selectedFish ? `${selectedFish.name} (${selectedFish.price}/kg)`  : "Select Fish"}
           </button>
             {isFishOpen && (
+              
               <ul className="dropdown-menu">
                 {allFish.map((fish) => (
                   <a onClick={() => handleSelectFish(fish)}>
@@ -87,6 +88,22 @@ function Inventory() {
                 ))}
               </ul> 
             )}
+            </div>
+
+            {/* display full fish information */}
+            <div>
+              {selectedFish ? (
+                <div className="full-fish-information">
+                  <img
+                    className="fish-image"
+                    src={selectedFish.image}
+                    alt={selectedFish.name}
+                    width={100}
+                  />
+                  <p>{`${selectedFish.name} | ${selectedFish.rarity} | ${selectedFish.weight.join("/kg - ")}/kg | (${selectedFish.price}/kg)`}</p>
+                </div>
+              ) : null}
+
         </div>
 
          {/* mutation dropdown */}
