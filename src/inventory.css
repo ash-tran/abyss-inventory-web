@@ -1,4 +1,5 @@
 /* https://www.w3schools.com/css/css_dropdowns.asp */
+
 .toggle-button {
   min-width: 50em;
 }
@@ -21,6 +22,8 @@
   margin: 0;
   background-color: #1a1a1a;
   min-width: 50em;
+  max-height: 20em;
+  overflow-y: auto;
   padding: 0.5em 0;
   list-style: none;
   z-index: 1;

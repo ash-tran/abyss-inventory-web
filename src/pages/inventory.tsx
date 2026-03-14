@@ -1,15 +1,22 @@
 import '../App.css'
 import '../inventory.css'
 import { useState, useRef, useEffect } from 'react'
+import allFish from '../game-data/all-fish'
+import stars from '../game-data/stars'
+import mutations from '../game-data/mutations'
+import type { FishWithRegions, Mutation, Star } from '../types/game-data'
+// import regions from '../game-data/regions'
 
 function Inventory() {
 
-  // handle dropdowns
+  // handle dropdown closing
   const [isFishOpen, setIsFishOpen] = useState(false)
   const [isStarOpen, setIsStarOpen] = useState(false)
+  const [isMutationOpen, setIsMutationOpen] = useState(false)
 
   const fishRef = useRef<HTMLDivElement>(null)
   const starRef = useRef<HTMLDivElement>(null)
+  const mutationRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -21,6 +28,10 @@ function Inventory() {
       {
         setIsStarOpen(false)
       }
+      if (mutationRef.current && !mutationRef.current.contains(event.target as Node)) 
+      {
+        setIsMutationOpen(false)
+      }
     }
 
     document.addEventListener("mousedown", handleClickOutside)
@@ -30,7 +41,25 @@ function Inventory() {
     }
   }, [])
 
+  // handle dropdown selections
+  const [selectedFish, setSelectedFish] = useState<FishWithRegions | null>(null);
+  const [selectedStar, setSelectedStar] = useState<Star | null>(null);
+  const [selectedMutation, setSelectedMutation] = useState<Mutation | null>(null);
 
+  const handleSelectFish = (fish: FishWithRegions) => {
+    setSelectedFish(fish);
+    setIsFishOpen(false);
+  };
+
+   const handleSelectMutation = (mutation: Mutation) => {
+    setSelectedMutation(mutation);
+    setIsMutationOpen(false);
+  };
+
+  const handleSelectStar = (star: Star) => {
+    setSelectedStar(star);
+    setIsStarOpen(false);
+  };
 
 
   {/* inventory value = (mutations x stars x fish x weight) */}
@@ -42,30 +71,61 @@ function Inventory() {
       <p>[Coming Soon]</p>
 
       <div className="dropdown-container">
+
+        {/* fish dropdown */}
         <div className="dropdown" ref={fishRef}>
           <p>Fish</p>
-          <button className="toggle-button" onClick={() => setIsFishOpen(!isFishOpen)}>Fish</button>
+          <button className="toggle-button" onClick={() => setIsFishOpen(!isFishOpen)}>
+            {selectedFish ? `${selectedFish.name} (${selectedFish.price}/kg)`  : "Select Fish"}
+          </button>
             {isFishOpen && (
-            
-                <ul className="dropdown-menu">
-                  <a><li>Fish</li></a>
-                  <a><li>Fish 2</li></a>
-                </ul>
-          
+              <ul className="dropdown-menu">
+                {allFish.map((fish) => (
+                  <a onClick={() => handleSelectFish(fish)}>
+                    <li>{fish.name} ({fish.price}/kg)</li>
+                  </a>
+                ))}
+              </ul> 
             )}
         </div>
 
-        <div className="dropdown" ref={starRef}>
-        <p>Stars</p>
-        <button className="toggle-button" onClick={() => setIsStarOpen(!isStarOpen)}>Stars</button>
-          {isStarOpen && (
+         {/* mutation dropdown */}
+        <div className="dropdown" ref={mutationRef}>
+        <p>Mutation</p>
+        <button className="toggle-button" onClick={() => setIsMutationOpen(!isMutationOpen)}>
+          {selectedMutation ? `${selectedMutation.rarity} (x${selectedMutation.multiplier})`  : "Select Mutation"}
+        </button>
+          {isMutationOpen && (
               <ul className="dropdown-menu">
-                <a><li>x1</li></a>
-                <a><li>x2</li></a>
-                <a><li>x3</li></a>
+                {mutations.map((mutation) => (
+                  <a onClick={() => handleSelectMutation(mutation)}>
+                    <li>{mutation.rarity} (x{mutation.multiplier})</li>
+                  </a>
+                ))}
               </ul>
           )}
         </div>
+
+        {/* star dropdown */}
+        <div className="dropdown" ref={starRef}>
+        <p>Stars</p>
+        <button className="toggle-button" onClick={() => setIsStarOpen(!isStarOpen)}>
+          {selectedStar ? `${selectedStar.value} Stars (x${selectedStar.multiplier})`  : "Select Mutation"}
+        </button>
+          {isStarOpen && (
+              <ul className="dropdown-menu">
+                {stars.map((star) => (
+                  <a onClick={() => handleSelectStar(star)}>
+                    <li>{star.value} Stars (x{star.multiplier})</li>
+                  </a>
+                ))}
+              </ul>
+          )}
+        </div>
+
+
+
+
       </div>
 
 
